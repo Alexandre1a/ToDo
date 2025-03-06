@@ -1,79 +1,38 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  Keyboard,
-  ScrollView,
-} from "react-native";
-import React, { useState } from "react";
-import Task from "./components/Task";
+import "react-native-gesture-handler";
+import { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { SettingsProvider } from "./context/SettingsContext";
+import LandingScreen from "./screens/LandingScreen";
+import MainScreen from "./screens/MainScreen";
+import SettingsScreen from "./screens/SettingsScreen";
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-  const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
+  const [showLanding, setShowLanding] = useState(true);
 
-  const handleAddTask = () => {
-    Keyboard.dismiss();
-    setTaskItems([...taskItems, task]);
-    setTask(null);
-  };
-
-  const completeTask = (index) => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
-  };
+  if (showLanding) {
+    return <LandingScreen onFinish={() => setShowLanding(false)} />;
+  }
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-        }}
-        keyboardShouldPersistTaps="handled"
-      >
-        {/* Today's Tasks */}
-        <View style={styles.tasksWrapper}>
-          <Text style={styles.sectionTitle}>Today's tasks</Text>
-          <View style={styles.items}>
-            {/* This is where the tasks will go! */}
-            {taskItems.map((item, index) => {
-              return (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => completeTask(index)}
-                >
-                  <Task text={item} />
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </View>
-      </ScrollView>
-
-      {/* Write a task */}
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        style={styles.writeTaskWrapper}
-      >
-        <TextInput
-          style={styles.input}
-          placeholder={"Write a task"}
-          value={task}
-          onChangeText={(text) => setTask(text)}
-        />
-        <TouchableOpacity onPress={() => handleAddTask()}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
-          </View>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
-    </View>
+    <SettingsProvider>
+      <NavigationContainer>
+        <Drawer.Navigator
+          initialRouteName="Main"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "#f4511e",
+            },
+            headerTintColor: "#fff",
+          }}
+        >
+          <Drawer.Screen name="Main" component={MainScreen} />
+          <Drawer.Screen name="Settings" component={SettingsScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </SettingsProvider>
   );
 }
 
