@@ -24,16 +24,14 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          distribution: 'adopt'  # Consider changing to 'temurin' for long-term support
           java-version: '11'
 
       - name: Build APK
-        run: cd android && ./gradelew assembleRelease
+        run: cd android && ./gradlew assembleRelease  # Fixed typo: "gradelew" → "gradlew"
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4  # Updated from v2 → v4
         with:
           name: app-release.apk 
           path: android/app/build/outputs/apk/release/app-release-unsigned.apk 
-
-
