@@ -2,36 +2,58 @@ name: Android Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '18'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
       - name: Set up JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'  # Consider changing to 'temurin' for long-term support
-          java-version: '11'
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: Build APK
-        run: cd android && ./gradlew assembleRelease  # Fixed typo: "gradelew" → "gradlew"
+      - name: Build Debug APK
+        run: |
+          cd android
+          ./gradlew assembleDebug
+        env:
+          ANDROID_HOME: ${{ secrets.ANDROID_HOME }}
+          ANDROID_SDK_ROOT: ${{ secrets.ANDROID_SDK_ROOT }}
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4  # Updated from v2 → v4
+      - name: Build Release APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+        env:
+          ANDROID_HOME: ${{ secrets.ANDROID_HOME }}
+          ANDROID_SDK_ROOT: ${{ secrets.ANDROID_SDK_ROOT }}
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
         with:
-          name: app-release.apk 
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk 
+          name: app-debug.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
