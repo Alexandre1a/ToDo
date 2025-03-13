@@ -1,5 +1,6 @@
 import * as React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, Text } from "react-native";
+import { styles } from "../constants/Style";
 
 export default function ProfileScreen() {
   return (
@@ -8,15 +9,3 @@ export default function ProfileScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  profileContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  profileText: {
-    fontSize: 16,
-    fontWeight: "700",
-  },
-});
