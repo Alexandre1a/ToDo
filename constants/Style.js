@@ -44,12 +44,12 @@ export const styles = StyleSheet.create({
     borderColor: "#C0C0C0",
     borderWidth: 1,
   },
-  profileContainer: {
+  globalContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-  profileText: {
+  globalText: {
     fontSize: 16,
     fontWeight: "700",
   },
