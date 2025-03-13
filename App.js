@@ -12,8 +12,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Task from "./components/Task";
-import { styles } from "./constants/Styles";
-import Colors from "./constants/Colors";
+import { styles } from "./constants/Style";
+// import Colors from "./constants/Colors";
 
 export default function App() {
   const [task, setTask] = useState();
