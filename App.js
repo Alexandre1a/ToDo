@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Task from "./components/Task";
+import { styles } from "./Style";
+import Colors from "./Colors";
 
 export default function App() {
   const [task, setTask] = useState();
@@ -77,6 +79,8 @@ export default function App() {
   );
 }
 
+{
+  /*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -121,3 +125,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 });
+*/
+}
