@@ -1,10 +1,15 @@
 import React from "react";
 import { View, Text } from "react-native";
+import CustomHeader from "../components/Header";
+import { styles } from "../constants/Style";
 
 export default function ProfileScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Profile Screen</Text>
+    <View style={{ flex: 1 }}>
+      <CustomHeader />
+      <View style={styles.globalContainer}>
+        <Text>Profile Screen</Text>
+      </View>
     </View>
   );
 }

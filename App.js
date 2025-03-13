@@ -10,8 +10,12 @@ function MyDrawer() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        headerShown: false, // This hides the default header
-        drawerPosition: "left", // Drawer opens from left side
+        headerShown: false,
+        drawerPosition: "left",
+        drawerType: "front", // Ensures drawer appears over content
+        drawerStyle: {
+          width: 240, // Set drawer width
+        },
       }}
     >
       <Drawer.Screen name="Tasks" component={TasksScreen} />

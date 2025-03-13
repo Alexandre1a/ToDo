@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import Task from "../components/Task";
 import { styles } from "../constants/Style";
+import CustomHeader from "../components/Header";
 
 export default function TasksScreen() {
   const [task, setTask] = useState();
@@ -30,6 +31,7 @@ export default function TasksScreen() {
 
   return (
     <View style={styles.container}>
+      <CustomHeader />
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,

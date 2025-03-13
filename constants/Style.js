@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#E8EAED",
   },
   tasksWrapper: {
-    paddingTop: 80,
+    paddingTop: 30,
     paddingHorizontal: 20,
   },
   sectionTitle: {
@@ -52,5 +52,16 @@ export const styles = StyleSheet.create({
   globalText: {
     fontSize: 16,
     fontWeight: "700",
+  },
+  headerContainer: {
+    height: 60,
+    justifyContent: "flex-end",
+    paddingHorizontal: 15,
+    backgroundColor: "#f8f9fa",
+    borderBottomWidth: 1,
+    borderBottomColor: "#dee2e6",
+  },
+  menuButton: {
+    padding: 5,
   },
 });
