@@ -49,13 +49,13 @@ jobs:
       - name: Download built binaries
         uses: actions/download-artifact@v4
         with:
-          name: *.apk
+          name: ToDo-release.apk
           path: android/app/build/outputs/apk/release/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: android/app/build/outputs/apk/release/ToDo-release.apk
+          files: android/app/build/outputs/apk/release/ToDo-release.apk/ToDo-release.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
