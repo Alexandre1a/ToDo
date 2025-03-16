@@ -9,6 +9,7 @@ export default function ProfileScreen() {
       <CustomHeader />
       <View style={styles.globalContainer}>
         <Text>Profile Screen</Text>
+        <Text>This tab is under construction.</Text>
       </View>
     </View>
   );
