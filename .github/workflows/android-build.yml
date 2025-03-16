@@ -1,4 +1,4 @@
-name: Expo Android Build
+name: Android Build (Expo)
 
 on:
   push:

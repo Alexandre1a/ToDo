@@ -1,0 +1,45 @@
+name: Mise à jour des statistiques de code
+
+on:
+  push:
+    tags:
+      - "*" # Déclenche sur tout push de tag
+  schedule:
+    - cron: "0 0 1 * *" # Exécute le workflow le 1er de chaque mois à minuit (UTC)
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v3
+
+      - name: Configuration de Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+
+      - name: Installation de tokei-pie
+        run: pip install tokei-pie
+
+      - name: Installation de la toolchain Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Installation de tokei
+        run: cargo install tokei
+
+      - name: Génération du rapport JSON avec tokei
+        run: tokei --output json > tokei.json
+
+      - name: Génération du schéma avec tokei-pie
+        run: tokei-pie --tokei-json tokei.json --output code_stats.svg
+
+      - name: Commit des fichiers mis à jour
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Mise à jour des stats de code et du schéma"
+          add: "tokei.json code_stats.svg"
