@@ -33,13 +33,10 @@ jobs:
         run: cargo install tokei
 
       - name: Génération du rapport JSON avec tokei
-        run: tokei --output json > tokei.json
+        run: tokei -o json | tokei-pie -o code-stats
 
-      - name: Génération du schéma avec tokei-pie
-        run: tokei-pie --tokei-json tokei.json --output code_stats.svg
-
-      - name: Commit des fichiers mis à jour
+      - name: Commit des fichiers à jour
         uses: EndBug/add-and-commit@v9
         with:
           message: "Mise à jour des stats de code et du schéma"
-          add: "tokei.json code_stats.svg"
+          add: "tokei.json code-stats"
