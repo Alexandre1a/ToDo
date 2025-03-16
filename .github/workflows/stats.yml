@@ -15,14 +15,6 @@ jobs:
       - name: Checkout du repo
         uses: actions/checkout@v3
 
-      - name: Configuration de Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.8"
-
-      - name: Installation de tokei-pie
-        run: pip install tokei-pie
-
       - name: Installation de la toolchain Rust
         uses: actions-rs/toolchain@v1
         with:
@@ -33,10 +25,10 @@ jobs:
         run: cargo install tokei
 
       - name: Génération du rapport JSON avec tokei
-        run: tokei -o json | tokei-pie -o code-stats
+        run: tokei -o json > tokei.json
 
       - name: Commit des fichiers à jour
         uses: EndBug/add-and-commit@v9
         with:
           message: "Mise à jour des stats de code et du schéma"
-          add: "tokei.json code-stats"
+          add: "tokei.json"
