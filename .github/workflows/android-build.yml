@@ -49,7 +49,7 @@ jobs:
       - name: Download built binaries
         uses: actions/download-artifact@v4
         with:
-          name: ToDo-release.apk
+          name: *.apk
           path: android/app/build/outputs/apk/release/
 
       - name: Create GitHub Release
