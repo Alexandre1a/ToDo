@@ -20,7 +20,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.Alexandre1a.todo",
+      "package": "com.anonymous.ToDo",
       "versionCode": 1,
       "permissions": [],
       "softwareKeyboardLayoutMode": "pan"
