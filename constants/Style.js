@@ -62,6 +62,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: "#dee2e6",
   },
   menuButton: {
+    alignItems: "left",
     padding: 5,
   },
 });

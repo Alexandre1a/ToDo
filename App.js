@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import TasksScreen from "./screens/Task";
 import ProfileScreen from "./screens/Profile";
+import SettingsScreen from "./screens/Settings";
 
 const Drawer = createDrawerNavigator();
 
@@ -19,6 +20,7 @@ function MyDrawer() {
       }}
     >
       <Drawer.Screen name="Tasks" component={TasksScreen} />
+      <Drawer.Screen name="Settings" component={SettingsScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
     </Drawer.Navigator>
   );
