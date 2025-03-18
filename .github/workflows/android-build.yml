@@ -28,6 +28,9 @@ jobs:
       - name: Generate Android directory
         run: npx expo prebuild --platform android
 
+      - name: Generate production bundle
+        run: npx expo export:dev --platform android
+
       - name: Build APK
         run: |
           cd android
