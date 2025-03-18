@@ -20,14 +20,9 @@
     "preview4": {
       "distribution": "internal"
     },
-    "production": {
-      "development": {
-        "developmentClient": true,
-        "distribution": "internal"
-      }
-    },
-    "submit": {
-      "production": {}
-    }
+    "production": {}
+  },
+  "submit": {
+    "production": {}
   }
 }
