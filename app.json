@@ -28,6 +28,14 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f194dbd0-2709-4d17-a00d-d2d825b71247"
+      }
+    },
+    "owner": "alexandre_1a"
   }
 }
