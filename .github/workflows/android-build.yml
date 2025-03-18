@@ -26,14 +26,24 @@ jobs:
         run: npm install
 
       - name: Generate Android directory
-        run: npx expo prebuild --platform android
+        run: npx expo prebuild --platform android --no-install
 
-      - name: Generate production bundle
-        run: npx expo export --dev=false
+      - name: Create assets directory
+        run: mkdir -p android/app/src/main/assets
+
+      - name: Generate JS bundle
+        run: |
+          npx react-native bundle \
+            --platform android \
+            --dev false \
+            --entry-file index.js \
+            --bundle-output android/app/src/main/assets/index.android.bundle \
+            --assets-dest android/app/src/main/res
 
       - name: Build APK
         run: |
           cd android
+          ./gradlew clean
           ./gradlew assembleRelease
 
       - name: Upload APK
