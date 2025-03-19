@@ -27,3 +27,11 @@ jobs:
 
       - name: Build on EAS
         run: eas build --profile production --platform android --non-interactive --wait
+
+env:
+  EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  actions: write
